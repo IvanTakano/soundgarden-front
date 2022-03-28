@@ -16,7 +16,7 @@ const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
 
 form.onsubmit = async (evento) => {
 	evento.preventDefault();
-
+    try{
 	const newEvento1 = {
 		name: inputNome.value,
 		poster: inputPoster.value,
@@ -40,4 +40,7 @@ form.onsubmit = async (evento) => {
 	});
 
 	console.log(resposta);
+}catch(erro){
+    console.log("Deu ruim!");
+}
 };
