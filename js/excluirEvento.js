@@ -22,12 +22,13 @@ const listarEvento = async () => {
     const respostaEvento = await fetch(`${BASE_URL}/events/${parametroID}`,optionEvents)
 
 const eventos = await respostaEvento.json()
+const dataEvento = new Date(eventos.scheduled);
 
 inputNome.value = eventos.name;
 inputPoster.value = eventos.poster;
 inputAtracao.value = eventos.attractions;
 inputDescricao.value = eventos.description;
-inputData.value = eventos.scheduled;
+inputData.value = dataEvento.toLocaleDateString('en-GB') + " " + dataEvento.toLocaleTimeString('en-GB').slice(0, -3);
 inputLotacao.value = eventos.number_tickets;
 };
 
