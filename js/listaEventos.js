@@ -16,7 +16,7 @@ const listarEventos = async () => {
             <th scope="row">${index+1}</th>
                 <td>${dataEvento.toLocaleDateString('en-GB')} ${dataEvento.toLocaleTimeString('en-GB').slice(0, -3)}</td>
                 <td>${evento.name}</td>
-                <td>${evento.description}</td>
+                <td>${evento.attractions}</td>
                 <td>
                     <a href="" class="btn btn-dark">ver reservas</a>
                     <a href="editar-evento.html?id=${evento.id}" class="btn btn-secondary">editar</a>
@@ -29,5 +29,4 @@ const listarEventos = async () => {
     return htmlEventos;
 }
 
-const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice
-(0,50);});
+const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice(0,100);});
