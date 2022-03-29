@@ -11,10 +11,10 @@ const listarEventos = async () => {
     const resposta = await fetch (`${BASE_URL}/events`, optionEvents)
     const eventos = await resposta.json();
     const htmlEventos = eventos.map((evento, index) => {
-        const dataEvento = new Date (evento.scheduled);
+        const dataEvento = new Date(evento.scheduled);
         const linha = `<tr>
             <th scope="row">${index+1}</th>
-                <td>${dataEvento.toLocaleDateString('en-GB')}</td>
+                <td>${dataEvento.toLocaleDateString('en-GB')} ${dataEvento.toLocaleTimeString('en-GB').slice(0, -3)}</td>
                 <td>${evento.name}</td>
                 <td>${evento.description}</td>
                 <td>
@@ -23,11 +23,11 @@ const listarEventos = async () => {
                     <a href="excluir-evento.html?id=${evento.id}" class="btn btn-danger">excluir</a>
                 </td>
             </tr>
-        `
-        return linha
+        `;
+        return linha;
     })
-    return htmlEventos
+    return htmlEventos;
 }
 
 const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice
-(0,50)})
+(0,50);});

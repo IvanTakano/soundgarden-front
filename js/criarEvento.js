@@ -1,7 +1,4 @@
 const data = document.querySelector("#data");
-data.setAttribute("value", "2022-03-28T01:00");
-data.setAttribute("min", "2022-03-28T01:00");
-data.setAttribute("max", "2025-12-30T00:00");
 data.setAttribute("type", "datetime-local");
 
 const inputNome = document.querySelector("#nome");
