@@ -6,29 +6,29 @@ const inputLotacao = document.querySelector("#lotacao");
 const inputPoster = document.querySelector("#banner")
 const form = document.querySelector(".col-6");
 
-const BASE_URL = "https://xp41-soundgarden-api.herokuapp.com";
-const parametros = new URLSearchParams(window.location.search);
+const BASE_URL = 'https://xp41-soundgarden-api.herokuapp.com'
+const parametros = new URLSearchParams(window.location.search)
 const parametroID = parametros.get("id");
 
 
 
-const listarEvento = async (evento) => {
+const listarEvento = async () => {
     const optionEvents = {
         method:"GET",
         headers: {
             "Content-Type": "application/json"
         },
     };
-const resposta = await fetch(`${BASE_URL}/events/${parametroID}`, optionEvents);
+    const respostaEvento = await fetch(`${BASE_URL}/events/${parametroID}`,optionEvents)
 
-const evento = await resposta.json();
+const eventos = await respostaEvento.json()
 
-inputNome.value = evento.name;
-inputPoster.value = evento.poster;
-inputAtracao.value = evento.attractions;
-inputDescricao.value = evento.description;
-inputData.value = evento.scheduled;
-inputLotacao.value = evento.number_tickets;
+inputNome.value = eventos.name;
+inputPoster.value = eventos.poster;
+inputAtracao.value = eventos.attractions;
+inputDescricao.value = eventos.description;
+inputData.value = eventos.scheduled;
+inputLotacao.value = eventos.number_tickets;
 };
 
 listarEvento();
