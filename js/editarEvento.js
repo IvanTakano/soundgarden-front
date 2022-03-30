@@ -12,6 +12,7 @@ const BASE_URL= "https://xp41-soundgarden-api.herokuapp.com"
 const data = document.querySelector("#data");
 data.setAttribute("type", "datetime-local");
 
+
 const paramentros = new URLSearchParams (window.location.search)
 const paramentroID = paramentros.get("id") 
 
@@ -39,27 +40,27 @@ mostrarEvento();
 
 form.onsubmit = async (evento) => {
 	evento.preventDefault();
+    
     try{
 	const newEvento1 = {
 		name: inputNome.value,
-		poster: inputPoster.value,
-		attractions: inputAtracao.value.split(","),
+		poster: inputBanner.value,
+		attractions: inputAtracoes.value.split(","),
 		description: inputDescricao.value,
 		scheduled: inputData.value,
 		number_tickets: inputLotacao.value
 	};
-
+    
     const options = {
 		method: "PUT",
 		body: JSON.stringify(newEvento1),
 		headers: {
 			"Content-Type": "application/json"
-		},
-		redirect: "follow"
+		},		
 	};
 
-	const resposta = await fetch(BASE_URL + "/events", options)
-
+	const resposta = await fetch(`${BASE_URL}/events/${paramentroID}`, options)
+    alert("Evento editado com sucesso!")
 	console.log(resposta);
 }catch(erro){
     console.log("Deu ruim!");
