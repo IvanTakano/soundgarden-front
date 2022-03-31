@@ -7,31 +7,45 @@ const optionEvents = {
     },
 };
 const table = document.querySelector("#card")
+let idEvento = "";
 
 const listarEventos = async () => {
     const resposta = await fetch (`${BASE_URL}/events`, optionEvents)
     const eventos = await resposta.json();
     const htmlEventos = eventos.map((evento) => {
         const dataEvento = new Date(evento.scheduled);
+        idEvento = evento.id;
         const linha = `
           <div class="container d-flex justify-content-center align-items-center" >
-              <article class="evento card p-5 m-3" id="cardInterno"> 
-              <tr>
+              <article class="evento card p-5 m-3" id="cardInterno">               
           
-              <td>${evento.name} </br></td>
-              <td>${dataEvento.toLocaleDateString('en-GB')} </br></td>
-              <td>${evento.attractions}</br></td>
-              <td>${evento.description}</br></td>
+              <h2>${evento.name} </br></h2>
+              <h4>${dataEvento.toLocaleDateString('en-GB')} </br></h4>
+              <p>${evento.attractions}</br></p>
+              <p>${evento.description}</br></p>
 
-              <a class="btn btn-dark " id="myBtn">reservar ingressos</a>
+              <a class="btn btn-dark" id="myBtn${idEvento}">reservar ingressos</a>              
               
-              </tr>
               </article>
           </div>                           
         `;
-        return linha;
+        return linha;   
+        
     })
     return htmlEventos;
 }
 
-const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice(0,3);});
+const eventos = listarEventos().then((resp) => {table.innerHTML = resp.slice(0,3);});
+
+
+var modal = document.getElementById("myModal");
+var btn = document.getElementById(`myBtn${idEvento}`);
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {    
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
