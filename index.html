@@ -19,8 +19,12 @@
     <main>
         <section class="full d-flex justify-content-center align-items-center"
             style="background-color: #F8BBD0; color: #fff">
-            <div class="text-center">
-                <h1>Adicione um banner maneiro aqui</h1>
+            <div class="text-center" id="carrossel">
+                <div class="container" id="img">
+                    <img src="./img/lollapaloza-2022.png" alt="lollapaloza-2022" class="imagem">
+                    <img src="./img/rockInRio.jpeg" alt="rockInRio" class="imagem">
+                    <img src="./img/joaoRock.jpeg" alt="joaoRock" class="imagem">
+                </div>
             </div>
         </section>
         <section class="full">
@@ -30,9 +34,25 @@
             <div class="container d-flex justify-content-center align-items-center">
                 <article class="evento card p-5 m-3">    
 
+                    <a class="btn btn-dark" id="myBtn">reservar ingressos</a>    
 
-
-                    
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                          <span class="close">&times;</span>
+                          <h5>Reserve seu ingresso</h5>
+                          <form class="modal-form">
+                              <div>
+                                <label for="modal-nome" class="modal-label">Nome </label>
+                                <input type="text" class="modal-form-control" id="modal-nome">
+                              </div>
+                              <div>
+                                <label for="modal-email" class="modal-label">E-mail</label>
+                                <input type="text" class="modal-form-control" id="modal-email">
+                              </div>
+                              <button type="submit" class="btn btn-primary" id="btn-modal-reservar">Reservar</button>
+                          </form>
+                        </div>                      
+                      </div>    
                 </article>
                
             </div>
@@ -88,6 +108,7 @@
         </div>
     </footer>
     <script src="./js/modal.js"></script>
+    <script src="./js/carrossel.js"></script>
 </body>
 
 </html>

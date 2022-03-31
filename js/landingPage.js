@@ -6,19 +6,19 @@ const optionEvents = {
         "Content-Type": "application/json"
     },
 };
-const table = document.querySelector(".evento card p-5 m-3")
+const table = document.querySelector(".evento.card.p-5.m-3")
 const listarEventos = async () => {
     const resposta = await fetch (`${BASE_URL}/booking`, optionEvents)
     const eventos = await resposta.json();
-    const htmlEventos = eventos.map((evento, index) => {
+    const htmlEventos = eventos.map((evento) => {
         const dataEvento = new Date(evento.scheduled);
         const linha = `<tr>
-            <th scope="row">${index+1}</th>
+            
              <td>${evento.name}</td>
                 <td>${dataEvento.toLocaleDateString('en-GB')} ${dataEvento.toLocaleTimeString('en-GB').slice(0, -3)}</td>
                 <td>${evento.attractions}</td>
+                <td>${description}</td>
 
-                <td>
                     <a href="?id=${evento._id}" class="btn btn-dark">reservar ingressos</a>
                 <div id="myModal" class="modal">
                         <div class="modal-content">
@@ -44,4 +44,4 @@ const listarEventos = async () => {
     return htmlEventos;
 }
 
-const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice(0,100);});
+const eventos = listarEventos().then((resp) => {table.innerHTML += resp.slice(0,3);});
