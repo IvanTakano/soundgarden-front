@@ -24,7 +24,7 @@ const listarEventos = async () => {
               <p>${evento.attractions}</br></p>
               <p>${evento.description}</br></p>
 
-              <a class="btn btn-dark" id="myBtn${idEvento}">reservar ingressos</a>              
+              <a class="btn btn-dark" id="myBtn">reservar ingressos</a>              
               
               </article>
           </div>                           
@@ -35,17 +35,20 @@ const listarEventos = async () => {
     return htmlEventos;
 }
 
-const eventos = listarEventos().then((resp) => {table.innerHTML = resp.slice(0,3);});
+const eventos = listarEventos().then((resp) => {table.innerHTML = resp.slice(0,3);
+  var modal = document.getElementById("myModal");
+  var btn = document.getElementById(`myBtn`);
+  var span = document.getElementsByClassName("close")[0];
+  console.log(modal);
+  btn.onclick =(evento) => {    
+    evento.preventDefault();
+    console.log("Abrir modal")
+    modal.style.display = "block";
+  };
+
+  span.addEventListener ("click",() => {
+    modal.style.display = "none";
+  })                  
+});
 
 
-var modal = document.getElementById("myModal");
-var btn = document.getElementById(`myBtn${idEvento}`);
-var span = document.getElementsByClassName("close")[0];
-
-btn.onclick = function() {    
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
