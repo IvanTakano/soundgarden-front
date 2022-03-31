@@ -68,3 +68,16 @@ footer nav ul li  {
     width: 500px;
 }
 
+                    
+ .full #card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+#cardInterno{
+    display: flex;
+    flex-direction: column;
+}
+
+
